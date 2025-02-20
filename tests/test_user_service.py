@@ -57,4 +57,3 @@ def test_create_user_with_same_email(db):
     assert str(exc_info.value) == f"Email '{user_data.email}' already exists."
 
 
-clear_table('users')
