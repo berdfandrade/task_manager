@@ -16,20 +16,7 @@ TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engin
 def db():
     """Cria uma sessão de teste, limpa todas as tabelas e reverte as mudanças após o teste"""
     session = TestingSessionLocal()
-    transaction = session.begin()  # Inicia uma transação
-
-    # Obtém o nome de todas as tabelas no banco de dados
-    inspector = inspect(session.bind)
-    tables = inspector.get_table_names()
-
-    # Limpa todas as tabelas (sem deletá-las)
-    for table in tables:
-        session.execute(f"TRUNCATE TABLE {table} RESTART IDENTITY CASCADE;")
-        print(f"Table '{table}' cleaned.")  # Imprime qual tabela foi limpa
-
-    session.commit()  # Aplica as alterações no banco
-    yield session  # Roda o teste com essa sessão
-    transaction.rollback()  # Reverte tudo o que foi feito no teste
+    yield session
     session.close()
 
 # TODO : RESOLVER ISSO DEPOIS 

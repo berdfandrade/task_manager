@@ -1,8 +1,10 @@
 import pytest
 from service.user_service import UserService
 from schemas.UserSchema import UserCreate
+from tests.utils.reset_database import clear_table
 
 def test_create_user(db):
+    
     """Testa se o usuário é criado corretamente no PostgreSQL."""
     user_data = UserCreate(
         username="testuser",
@@ -19,3 +21,7 @@ def test_create_user(db):
     assert user.username == "testuser"
     assert user.email == "test@example.com"
     assert user.bio == "Bio de teste"
+    
+    # Limpa a tabela users
+    clear_table('users')
+

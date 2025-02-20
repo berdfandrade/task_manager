@@ -14,3 +14,8 @@ def create_user(user_data: UserCreate, db: Session = Depends(get_db)):
 @router.get("/", status_code=200)
 def check_health():
     return {"message" : "Hello, World!"}
+
+@router.get("/users", status_code=200)
+def get_all_users(db : Session = Depends(get_db)):
+    return UserController.get_all_users()
+

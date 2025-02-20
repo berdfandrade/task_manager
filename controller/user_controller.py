@@ -16,3 +16,7 @@ class UserController:
             )
 
         return UserService.create_user(db, user_data)
+
+    @staticmethod
+    def get_all_users(db : Session):
+        return UserService.get_users()
