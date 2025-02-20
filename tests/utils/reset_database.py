@@ -15,7 +15,8 @@ Session = sessionmaker(bind=engine)
 def clear_table(TABLE : str):
     """Remove todos os registros da tabela users sem apagar outras tabelas."""
     with engine.connect() as conn:
-        conn.execute(text(f'DELETE FROM {TABLE};')) 
+        conn.execute(text(f'TRUNCATE TABLE {TABLE} RESTART IDENTITY CASCADE;')) 
         conn.commit()
 
     print(f"Tabela {TABLE} limpa com sucesso!")
+
