@@ -18,5 +18,3 @@ def db():
     session = TestingSessionLocal()
     yield session
     session.close()
-
-# TODO : RESOLVER ISSO DEPOIS 
